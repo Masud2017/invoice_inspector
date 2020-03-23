@@ -1,7 +1,11 @@
 {% extends 'layout/index.html' %}
 {% block title %}{{title}}{% endblock title %}
 {% block content %}
-<div name = "login">
-    Login is going to work here
+<div name = "login" class = "container">
+    Enter your user:
+    <input type = "email" class = "form-control" name = "user">
+    Enter your password:
+    <input type = "password" class = "form-control" name = "pass">
+    <input type = "submit" value = "Login" class = "form-control btn btn-danger mt-sm-2">
 </div>
 {% endblock content %}

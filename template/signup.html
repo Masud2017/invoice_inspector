@@ -1,12 +1,32 @@
 {% extends 'layout/index.html' %}
 {% block content %}
-<div name = "signup">
+<div name = "signup" class = "container">
     <form action = "register/" method = "post">{% csrf_token %}
-        Enter your email
+        Name:
+        <input type = "text" name = "name" class = "form-control">
+        Enter your email:
         <input type = "email" name = "user" class = "form-control">
-        Enter your pass word
+        Enter your password:
         <input type = "password" name = "pass" class = "form-control">
-        <input type = "submit" value = "Signup">
+        Retype your password:
+        <input type = "password" class = "form-control" name = "repass">
+        Company Name:
+        <input type = "text" class = "form-control" name = "company">
+        Color:
+        <input type = "color" class = "form-control" name = "color">
+        Gender:<br>
+        
+        <input type ="radio" value = "male" name = "gender" id = "male"/>
+        <label for = "male">Male</label><br/>
+        
+        <input type ="radio" value = "female" name = "gender" id = "female"/>
+        <label for = "female">Female</label><br/>
+
+        <input type ="radio" value = "other" name = "gender" id = "other"/>
+        <label for = "other">Other</label>
+
+
+        <input type = "submit" class = "form-control btn btn-danger mt-sm-2" value = "Signup">
     </form>
 </div>
 {% endblock content %}
