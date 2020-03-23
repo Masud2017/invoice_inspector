@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        {% load staticfiles %}
+        <script src = {% static "js/jquery.js" %}></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+
+        <!-- Jquery stff-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+        
+
+       
+        <title>
+            <title>
+                {% block title %}
+                {{ title|default:"Untitled Page" }}
+                {% endblock title %}
+                </title>
+
+        </title>
+        
+    
+      
+        <link rel = "stylesheet" href = {% static 'css/index.css'%}>
+        
+
+    </head>
+    <body>
+        <div class = "container-fluid mt-sm-2">
+            <div name = "nav" class ="nav">
+                <img src = "https://yt3.ggpht.com/a/AGF-l7893esgXd9Zsa8SEpHrtg_IQiIb4LP-d58t=s900-c-k-c0xffffffff-no-rj-mo" height = "40px" width = "40px" class ="nav-brand">
+                <a class = "nav-link ml-auto btn btn-danger mr-sm-2" href = {% url "index" %} >Home</a>
+                <a href = {% url "login" %} class = "nav-link btn btn-danger mr-sm-2">Login</a>
+                <a href = {% url "signup" %}  class = "nav-link btn btn-danger mr-sm-2">Signup</a>
+                <a href = {% url "aboutus" %} class = "nav-link btn btn-danger" >Aboutus</a>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock content %}
+       <div class = "container-fluid">
+        <div name = "footer">
+            Copyright &copy from 2020
+        </div>
+    </div>
+     
+    </body>
+</html>
