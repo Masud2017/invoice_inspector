@@ -1,17 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class User(models.Model):
-    name = models.TextField()
-    email = models.TextField()
-    password = models.TextField()
-    company = models.TextField()
-    color = models.TextField()
-    created_at = models.DateField()
-    updated_at = models.DateField()
+class Profile(models.Model):
+    name = models.TextField(max_length = 50, blank=True)
+    company = models.TextField(max_length=50,blank=True)
+    color = models.TextField(max_length=50,blank=True)
+    gender = models.TextField(max_length=50,blank=True)
+    profilePic = models.TextField(blank = True)
+    email = models.EmailField(blank=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
 
-'''
-class profileDetail(models.Model):
-        email = models.ForeignKey(User, on_delete=models.CASCADE)
-        color = models.TextField()
+class Setting(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    theme = models.TextField(max_length=15)
 
-'''

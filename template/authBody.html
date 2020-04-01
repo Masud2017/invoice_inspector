@@ -1,0 +1,56 @@
+
+<div name = "authBody" class = "container mt-sm-4">
+    <h1 style = "font-family: 'Acme', sans-serif">Dashboard</h1>
+    <div class = "row">
+        <div class = "col-sm-4">
+            <h3 style = "font-family: 'Acme',sans-serif;">Add invoice in your list:</h3>
+            <button type = "button" class = "btn form-control" style = "background-color: {{user.profile.color}};"  data-toggle="modal" data-target="#myModal">[+]</button>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal" style = "background:url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.freecreatives.com%2Fwp-content%2Fuploads%2F2015%2F04%2Fpaper_by_francy84.jpg&f=1&nofb=1')">
+                <div class="modal-dialog">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Add invoice to your list</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action = "addInvoice" method = "post">{% csrf_token %}
+                            <label for = "company">
+                            Company
+                            </label>
+                            <input type = "text" placeholder = "Enter your company name" class = "form-control">
+                            <label for = "logo">
+                            Logo
+                            </label>
+                            <input type = "file" class = "form-control">
+                            <input type = "submit" style = "background-color: {{user.profile.color}};color:black" value = "Add" class ="btn btn-danger form-control mt-sm-4">
+
+                        </form>
+                    </div>
+            
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn" style = "background-color:  {{user.profile.color}};" data-dismiss="modal">Close</button>
+                    </div>
+            
+                </div>
+                </div>
+            </div>
+
+        </div>
+        
+        
+        <div class = "col-sm-8" style = "border:4px dashed black">
+            <h3 class = "col-sm-8" style = "font-family: 'Acme', sans-serif;border-bottom:5px solid {{user.profile.color}};">List of your invoices:</h3>
+            {% for x in db %}
+                <div class = "row">
+                    <div class = "col-sm-4"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

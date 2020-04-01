@@ -1,19 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
+from django.contrib import auth
+from .models import Profile
+from django.contrib.auth.models import User
 
 def register(request):
-    name = request.POST["name"]
-    email = request.POST["user"]
-    password = request.POST["pass"]
-    company = request.POST["company"]
-    color = request.POST["color"]
-    gender = request.POST["gender"]
-    
-    '''
-    nameDb = User(name=name)
-    emailDb = User(email=email)
-    '''
-    return render(request,'success.html',{'email':email,'password':password,'name':name,'company':company,'color':color,'gender':gender})
+    if request.POST: # procede if the request is post req.
+        if request.POST["pass"] == request.POST["repass"]:
+            name = request.POST["namee"]
+            userName = name = request.POST["uname"]
+            email = request.POST["user"]
+            password = request.POST["pass"]
+            gender = request.POST["gender"]
+            color = request.POST["color"]
+            company = request.POST["company"]
+            profilePic = request.POST["profilePic"]
 
-def login(request):
-    if request.method == "POST":
-        pass
+            
+
+            userLogger = User.objects.create_user(username=userName,password = password,first_name=request.POST["namee"])
+            profile = Profile(name=name,profilePic=profilePic,company=company,color=color,gender=gender,user=userLogger,email=email)
+            profile.save()
+
+            code = 200
+            auth.login(request,userLogger) # creating the session (loging in the user)
+            return HttpResponseRedirect('/') # redierecting to the root page with session after signed up the user
+        else:
+            return HttpResponseRedirect('index')
+        

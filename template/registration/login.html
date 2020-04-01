@@ -1,0 +1,12 @@
+{% extends "../layout/index.html %}
+{% load crispy_forms_tags %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div name = "login" class = "container mt-sm-4">
+    <form method = "post">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button class = "btn btn-danger form-control" type = "submit">Login</button>
+    </form>
+</div>
+{% endblock %}

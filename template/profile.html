@@ -1,0 +1,22 @@
+{% extends "layout/index.html" %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
+<div name = "profile" class ="container mt-sm-4">
+    <h1 style = "font-family: 'Acme', sans-serif">Profile</h1>
+    <div class = "row">
+        <div class = "col-sm-4">
+            <div style = "border:3px solid grey;padding:6px;border-radius:10px;display:block;">
+                <img style = "border:5px solid {{user.profile.color}}" src = {{user.profile.profilePic}} style = "3px solid black" width = "150px" class = "rounded-circle">
+                <h4>{{user.first_name}}</h4>
+                Company: {{user.profile.company}}
+            </div>
+
+        </div>
+        <div class = "col-sm-8">
+            <h1 style = "font-family: 'Acme',sans-serif;border-bottom:4px solid {{user.profile.color}}">History</h1>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -5,8 +5,11 @@
         {% load staticfiles %}
         <script src = {% static "js/jquery.js" %}></script>
         <link rel = "stylesheet" href = {% static "css/body.css" %}>
+        <link rel = "stylesheet" href = {% static "css/authBody.css" %}
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 
         <!-- jQuery library -->
@@ -22,37 +25,65 @@
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
         
 
+
+        <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+
        
         <title>
-            <title>
                 {% block title %}
-                {{ title|default:"Untitled Page" }}
+                {{ title |default:"Untitled Page" }}
                 {% endblock title %}
-                </title>
 
         </title>
       
-        <link rel = "stylesheet" href = {% static 'css/index.css'%}>
+        <link rel = "stylesheet" href = {% static 'css/index.css' %}>
+
+        <style>
+            .nav-style {
+                background-color: {{user.profile.color}};
+                box-shadow: 5px 10px 10px  #888888;
+                padding: 10px;
+                border-radius: 20px 20px;
+                margin-bottom:5px;
+
+            }
+        </style>
         
 
     </head>
-    <body>
+    <body style = "background:url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.freecreatives.com%2Fwp-content%2Fuploads%2F2015%2F04%2Fpaper_by_francy84.jpg&f=1&nofb=1')">
         <div class = "container-fluid mt-sm-2">
-            <div name = "nav" class ="nav">
-                <img src = "https://yt3.ggpht.com/a/AGF-l7893esgXd9Zsa8SEpHrtg_IQiIb4LP-d58t=s900-c-k-c0xffffffff-no-rj-mo" title = "Home" height = "40px" width = "40px" class ="nav-brand">
-                <a class = "nav-link ml-auto btn btn-danger mr-sm-2" href = {% url "index" %} >Home</a>
-                <a href = {% url "login" %} class = "nav-link btn btn-danger mr-sm-2">Login</a>
-                <a href = {% url "signup" %}  class = "nav-link btn btn-danger mr-sm-2">Signup</a>
-                <a href = {% url "aboutus" %} class = "nav-link btn btn-danger" >Aboutus</a>
+            {% if user.is_authenticated %}
+            <div name = "nav" class ="nav nav-style">
+                <img src = {{user.profile.profilePic}} class = "nav-brand rounded-circle" width="50px">
+                <a class = "nav-link ml-auto btn btn-danger mr-sm-2" href = {% url "index" %} >Dashboard</a>
+                <a href = {% url "profile" %} class = "nav-link btn btn-danger mr-sm-2">Profile</a>
+                <a href = {% url "settings" %}  class = "nav-link btn btn-danger mr-sm-2">Settings</a>
+                <a href = {% url "logout" %} class = "nav-link btn btn-danger" >Logout</a>
             </div>
+            {% else %}
+                <div name = "nav" class ="nav nav-style">
+                    <img src = "https://yt3.ggpht.com/a/AGF-l7893esgXd9Zsa8SEpHrtg_IQiIb4LP-d58t=s900-c-k-c0xffffffff-no-rj-mo" title = "Home" height = "40px" width = "40px" class ="nav-brand">
+                    <a class = "nav-link ml-auto btn btn-danger mr-sm-2" href = {% url "index" %} >Home</a>
+                    <a href = {% url "login" %} class = "nav-link btn btn-danger mr-sm-2">Login</a>
+                    <a href = {% url "signup" %}  class = "nav-link btn btn-danger mr-sm-2">Signup</a>
+                    <a href = {% url "aboutus" %} class = "nav-link btn btn-danger" >Aboutus</a>
+                </div>
+            
         </div>
-        {% block content %}
-        {% endblock content %}
-       <div class = "container-fluid">
+                    
+                    
+            {% endif %}
+            {% block content %}
+            {% endblock content %}
+       
+       <!-- footer section -->
+        <div class = "container-fluid">
         <div name = "footer">
-            <p class = "text-center">Copyright &copy from 2020</p>
+           
+            <p class = "text-center fixed-bottom">Copyright &copy from 2020</p>
         </div>
     </div>
      
-    </body>
+    </body style = "background:url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.freecreatives.com%2Fwp-content%2Fuploads%2F2015%2F04%2Fpaper_by_francy84.jpg&f=1&nofb=1')">
 </html>

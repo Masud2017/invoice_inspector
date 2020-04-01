@@ -1,15 +1,20 @@
 {% extends 'layout/index.html' %}
+{% block title %}Signup{% endblock title %}
 {% block content %}
-<div name = "signup" class = "container">
+<div name = "signup" class = "container mt-sm-4">
     <form action = "register/" method = "post">{% csrf_token %}
         Name:
-        <input type = "text" name = "name" class = "form-control">
+        <input type = "text" name = "namee" class = "form-control">
+        UserName:
+        <input type = "text" name = "uname" classs ="form-control">
         Enter your email:
         <input type = "email" name = "user" class = "form-control">
         Enter your password:
         <input type = "password" name = "pass" class = "form-control">
         Retype your password:
         <input type = "password" class = "form-control" name = "repass">
+        Profile pic:
+        <input type = "text" class = "form-control" placeholder="paste your image url" name = "profilePic">
         Company Name:
         <input type = "text" class = "form-control" name = "company">
         Color:
