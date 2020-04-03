@@ -1,8 +1,12 @@
 from django.shortcuts import render,HttpResponseRedirect
+from django.views import generic
 from django.contrib import auth
 from .models import InvoiceInfo
+from django.contrib.auth.models import User
+from authApp.models import Profile
 
 # Create your views here.
+
 
 def index(request):
     # code will be showed here
@@ -29,11 +33,14 @@ def register(request):
 
 def createInvoice(request):
     if request.POST:
-        if request.user.is_authenticated():
-
-        
-            return HttpResponseRedirect('/')
-        else:
-            print("User is not logged in")
-    
-    
+        company = request.POST["company"]
+        logo = request.POST["logo"]
+        email = request.POST["email"]
+        address = request.POST["address"]
+        phone = request.POST["phoneNum"]        
+        user = User.objects.get(id=request.user.id)
+        print(user)
+        print("Done CreateInvoice")
+        InvoiceInfoDb = InvoiceInfo(comp = company, logoComp = logo, emailComp = email,addressComp = address, phoneNum = phone,user = user)
+        InvoiceInfoDb.save()
+        return HttpResponseRedirect('/')
