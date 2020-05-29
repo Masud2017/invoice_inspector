@@ -1,0 +1,46 @@
+{% extends "layout/index.html" %}
+{% block title %}Generate{% endblock title %}
+{% block content %}
+
+<div name = "generate" class = "container">
+    <!-- Info -->
+    <div name = "info">
+        <div class = "mb-sm-4 mt-sm-4" title = "Info about the invoice template" style = "border:3px dotted red;padding:4px;border-left:7px solid blue;padding-left:7px;">
+            Company : {{data.comp}}<br>
+            UserName : {{data.user}}<br>
+            Email: {{data.emailComp}}<br>
+            Address : {{data.addressComp}}<br>
+            Phone : {{data.phoneNum}}<br><br>
+        </div>
+        <div class = "row">
+            <div class = "col-sm-6">
+                <form action = "/genInvoice/{{data.id}}" method = "post"> {% csrf_token %}
+                    FileName:
+                    <input type = "text" name = "fname" class = "form-control" placeholder="Enter your file name">
+                    Date:
+                    <input type = "date" name = "date" class = "form-control">
+                    <!--{% for x in counter %}
+                    Enter the product #{{x}}
+                    <input type = "text" placeholder =  "Enter the product" name = "product{{x}}" class = "form-control">
+                    Enther the price: #{{x}}
+                    <input name = "price{{x}}" type = "text" class = "form-control" placeholder = "Enter the neumerical values">
+                    {% endfor %}-->
+           
+                    <!--<buttn type = "button" class = "form-control btn btn-danger mt-sm-4" id = "before" onclick = "addmore()">Add more</buttn>-->
+                    Enter the product #0:
+                    <input type = "text" class = "form-control" name = "product0" placeholder="Enter your product">
+                    Enter the price #0:
+                    <input type = "text" class = "form-control" name = "price0" placeholder="Enter your price">
+                    <div id = "container"></div>
+                    <div id = "container2"></div>
+                    <div id = "sendCounter"></div>
+                    <p id = "error" style =  "color:red"></p>
+                    <input type = "submit" value = "Generate" class = "form-control btn btn-danger mt-sm-4">
+                    <button type = "button" class = "btn btn-danger form-control mt-sm-4" onclick = "addInput()">Add-more-product</button>
+                </form>
+            </div>
+            <div class = "col-sm-6"><h3 style = "border-bottom:4px solid red;padding-bottom:4px">Your generated invoices:</h3></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -9,5 +9,10 @@ urlpatterns = [
     path('aboutus',views.aboutus,name='aboutus'),
     path('settings/',views.settings,name='settings'),
     path('profile/',views.profile,name='profile'),
-    path('addInvoice',views.createInvoice,name='addInvoice')
+    path('addInvoice',views.createInvoice,name='addInvoice'),
+    path('list',views.MemberList.as_view()),
+    path('delvoice/<int:voice_id>',views.delVoice),
+    path('generate/<int:id_get>',views.generate,name = "generate"),
+    path('genInvoice/<int:id_get>',views.genInvoice,name = "genInvoice"),
+    
 ]

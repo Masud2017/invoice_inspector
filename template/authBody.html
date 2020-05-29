@@ -59,6 +59,27 @@
         <div class = "col-sm-8" style = "border:4px dashed black">
             <h3 class = "col-sm-8" style = "font-family: 'Acme', sans-serif;border-bottom:5px solid {{user.profile.color}};">List of your invoices:</h3>
             {{user.InvoiceInfo.addressComp}}
+
+            <div class = "row">
+                {% for x in data %}
+                        <div col-sm-3>
+                            <div name = "wrapper" style = "padding-left:7px;padding-top:4px">
+                                <div class="card bg-warning mb-sm-4 mr-sm-4">
+                                    <div class="card-body">
+                                        <div class="card-header"><b>Use this</b></div>
+                                        <div class = "card-title"><b>Company: {{x.comp}}</b></div>
+                                        <div title = "Address: {{x.addressComp}}">Info</div>
+                                        <div class = "card-footer"><form method = "post" action = "generate/{{x.id}}">{% csrf_token %}<input class = "btn btn-danger" type = "submit" value = "Generate"></form><form action = "delvoice/{{x.id}}"><input type = "submit" class = "btn btn-danger mt-sm-4" value = "Delete"></form></div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    
+                {% endfor %}
+                    </div>
+
         </div>
     </div>
 </div>

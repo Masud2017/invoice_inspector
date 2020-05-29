@@ -10,12 +10,22 @@
                 <h4>{{user.first_name}}</h4>
                 Company: {{user.profile.company}}
             </div>
-
         </div>
         <div class = "col-sm-8">
             <h1 style = "font-family: 'Acme',sans-serif;border-bottom:4px solid {{user.profile.color}}">History</h1>
-            Invoice-Info = {{user.invoiceinfo.comp}}
-            
+            <style>
+                table,tr,td {
+                    border:1px solid black;
+                    padding: 10px;
+                    border-collapse: collapse;
+
+                }
+            </style>
+                {% for x in data %}
+                    <tr><th>Username:</th><th>Company</th></tr>
+                    <tr><td>{{x.user}}</td><td>{{x.comp}}</td><td><form action = "/delvoice/{{x.id}}"><input type = "submit" value = "delete"></form></forn></td></tr>
+                {% endfor %}
+    
         </div>
 
     </div>

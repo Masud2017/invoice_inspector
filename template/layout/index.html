@@ -4,8 +4,9 @@
     <head>
         {% load staticfiles %}
         <script src = {% static "js/jquery.js" %}></script>
+        <script src = {% static "js/function.js" %}></script>
         <link rel = "stylesheet" href = {% static "css/body.css" %}>
-        <link rel = "stylesheet" href = {% static "css/authBody.css" %}
+        <link rel = "stylesheet" href = {% static "css/authBody.css" %}>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
@@ -28,11 +29,14 @@
 
         <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
 
+        <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
+
        
         <title>
                 {% block title %}
                 {{ title |default:"Untitled Page" }}
-                {% endblock title %}
+            </div>            {% endblock title %}
 
         </title>
       
@@ -81,7 +85,7 @@
         <div class = "container-fluid">
         <div name = "footer">
            
-            <p class = "text-center fixed-bottom">Copyright &copy from 2020</p>
+            <p class = "text-center mt-sm-4">Copyright &copy from 2020</p>
         </div>
     </div>
      
