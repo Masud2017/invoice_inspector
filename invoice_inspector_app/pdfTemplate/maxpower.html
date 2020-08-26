@@ -1,0 +1,53 @@
+<style>
+	* {
+		margin:0px;
+		padding:0px;
+	}
+	table,tr,th {
+		border:1px solid black;
+		border-collapse:collapse;
+		padding:10px;
+		padding-left:20px;
+		padding-right:20px;
+
+	}
+	.sameline {
+		display : inline-block;
+		margin-top:0px;
+	}
+	.container {
+		margin-top:5px;
+		margin-bottom:5px;
+		margin-left: 10%;
+		margin-right:10%;
+		padding: 10px;
+	}
+</style>
+<div name = "maxpower-template" style = "border:1px solid orange" class ="container">
+	<div style ="position: relative" name = "template-header">
+		<img src = "logo.jpeg" width = "50px" height = "50px" class = "sameline" style = "position:absolute;"> 
+		<h1 class = "sameline" style = "margin-left:25%">Max-power</h1><br>
+		<div style = "float:right">
+			<b>Jibon rahman</b><br>
+			<b>Date: 11 - 07 - 2020</b>
+		</div><br><br><br>
+		<hr style = "margin-bottom:10px;">
+	</div>
+	<div name = "template-body" style = "margin-left:35%">
+
+		<table>
+			<tr><th>ID</th><th>Product name</th><th>Count</th><th>Price</th></tr>
+			{% for x in data %}
+				<tr><td></td><td></td><td></td><td></td></tr>
+			{% endfor %}
+			<tr><td colspan = "4" style = "text-align:right">Total: 1500 /=</td></tr>
+		</table>
+		<div style = "background-color:black;color:white;padding:6px;margin-right:55%;margin-top:15px;">In word:</div>
+
+	</div>
+	<div name = "template-footer" align="center">
+		<hr style = "margin-top:10px;margin-bottom:5px">
+		<h3>Office: House: 433, kollyanpur,southpaikpara, mirpur-1 dhaka-1216</h3>
+		Mobile : 01816783115,Email: msmasud578@gmail.com
+	</div>
+</div>

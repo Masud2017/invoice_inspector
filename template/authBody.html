@@ -19,6 +19,10 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <form action = "addInvoice" method = "post">{% csrf_token %}
+                            <label for="name">
+                                Name
+                            </label>
+                            <input type = "text" placeholder="Enter your name" name = "name" class = "form-control">
                             <label for = "company">
                             Company
                             </label>
@@ -69,7 +73,7 @@
                                         <div class="card-header"><b>Use this</b></div>
                                         <div class = "card-title"><b>Company: {{x.comp}}</b></div>
                                         <div title = "Address: {{x.addressComp}}">Info</div>
-                                        <div class = "card-footer"><form method = "post" action = "generate/{{x.id}}">{% csrf_token %}<input class = "btn btn-danger" type = "submit" value = "Generate"></form><form action = "delvoice/{{x.id}}"><input type = "submit" class = "btn btn-danger mt-sm-4" value = "Delete"></form></div>
+                                        <div class = "card-footer"><form method = "post" action = "open/{{x.id}}">{% csrf_token %}<input class = "btn btn-danger" type = "submit" value = "Generate"></form><form action = "delvoice/{{x.id}}"><input type = "submit" class = "btn btn-danger mt-sm-4" value = "Delete"></form></div>
     
                                     </div>
                                 </div>

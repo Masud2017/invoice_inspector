@@ -12,7 +12,12 @@ urlpatterns = [
     path('addInvoice',views.createInvoice,name='addInvoice'),
     path('list',views.MemberList.as_view()),
     path('delvoice/<int:voice_id>',views.delVoice),
-    path('generate/<int:id_get>',views.generate,name = "generate"),
+   
+    path('open/<int:id_get>',views.Open,name="open"),
     path('genInvoice/<int:id_get>',views.genInvoice,name = "genInvoice"),
+    path('generate/<int:id_get>',views.generate,name="generate"),
+    path('delGenerate/<int:id_get>',views.delGenerate)
     
 ]
+
+ #path('generate/<int:id_get>',views.generate,name = "generate"), # rename to open

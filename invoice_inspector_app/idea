@@ -1,0 +1,4 @@
+# generate view
+
+	- First we are going to create an object which contain the html data.
+	- Then I will feed the object into pdfkit.from_file(object,<outpu_name>)

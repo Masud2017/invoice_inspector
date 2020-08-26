@@ -11,6 +11,7 @@ STATUS = (
 )
 
 class InvoiceInfo(models.Model):
+    name = models.TextField(max_length=50,blank=True)
     comp = models.TextField(max_length=50,blank = True)
     logoComp = models.TextField(blank=True)
     emailComp = models.TextField(blank=True)
@@ -27,5 +28,6 @@ class InvoiceCollection(models.Model):
     name = models.TextField(max_length=250,blank=True)
     date = models.TextField()
     productData = models.TextField(max_length=50,blank=True)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    company = models.TextField(max_length=50,blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # limitCount = models.IntegerField(default = 0) # couting the number of how many invoice can the user genarate each day

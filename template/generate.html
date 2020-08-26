@@ -19,27 +19,52 @@
                     <input type = "text" name = "fname" class = "form-control" placeholder="Enter your file name">
                     Date:
                     <input type = "date" name = "date" class = "form-control">
-                    <!--{% for x in counter %}
+                    {% for x in counter %}
                     Enter the product #{{x}}
-                    <input type = "text" placeholder =  "Enter the product" name = "product{{x}}" class = "form-control">
+                    <input type = "text" placeholder =  "Enter the product" value = "none" name = "product{{x}}" class = "form-control">
                     Enther the price: #{{x}}
-                    <input name = "price{{x}}" type = "text" class = "form-control" placeholder = "Enter the neumerical values">
-                    {% endfor %}-->
+                    <input name = "price{{x}}" type = "text" class = "form-control" value = "none" placeholder = "Enter the neumerical values">
+                    {% endfor %}
            
                     <!--<buttn type = "button" class = "form-control btn btn-danger mt-sm-4" id = "before" onclick = "addmore()">Add more</buttn>-->
-                    Enter the product #0:
+                   <!-- Enter the product #0:
                     <input type = "text" class = "form-control" name = "product0" placeholder="Enter your product">
                     Enter the price #0:
                     <input type = "text" class = "form-control" name = "price0" placeholder="Enter your price">
-                    <div id = "container"></div>
-                    <div id = "container2"></div>
-                    <div id = "sendCounter"></div>
+                    <div id = "container"></div>-->
+                    <!--<div id = "container2"></div>-->
+                    <!--<div id = "count-container"></div>
                     <p id = "error" style =  "color:red"></p>
+                -->
                     <input type = "submit" value = "Generate" class = "form-control btn btn-danger mt-sm-4">
-                    <button type = "button" class = "btn btn-danger form-control mt-sm-4" onclick = "addInput()">Add-more-product</button>
+                   <!-- <button type = "button" class = "btn btn-danger form-control mt-sm-4" onclick = "addInput();getCount();">Add-more-product</button>-->
                 </form>
             </div>
-            <div class = "col-sm-6"><h3 style = "border-bottom:4px solid red;padding-bottom:4px">Your generated invoices:</h3></div>
+            <div class = "col-sm-6"><h3 style = "border-bottom:4px solid red;padding-bottom:4px">Your generated invoices:</h3>
+                {{db2}}
+                <!-- if the ivnoices are exists on the database then print their link in to this section -->
+                {% if not dataGeneratedInvoiceCollection %}
+                    <br>
+                    <div style = "border:2px dotted red;padding:10px;">
+                        <img class = "mx-auto d-block" src = "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg.photobucket.com%2Falbums%2Fv514%2Fjamc29%2FAvatars%2FAnime-404ErrorGirl_01.jpg&f=1&nofb=1" alt = "something went wrong"/>
+                        <h3 align="center">Sorry you don't have any invoice yet</h3>
+                    </div>
+                {% else %}
+                    {% for x in dataGeneratedInvoiceCollection %}
+                         <div class = "card bg-danger text-white">
+                             <div class = "card-body">
+                             Hey this is card body
+                             <h5>File name: </h5>{{x.fileName}}
+                         </div>
+
+                             <a href = "/generate/{{x.id}}" target = "_blank" class = "btn btn-danger">Click here to generate your invoice </a>
+                             <form action = "/delGenerate/x.id}}">
+                                 <input type = "submit" value = "Delete" class = "btn btn-success"/>
+                             </form>
+                         </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

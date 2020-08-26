@@ -7,7 +7,7 @@
 "use strict"; // using the sring mode of the javascript
 // Javascript script for create some interactive features
 
-var count = 1;
+var count = 1; // This variable is used by addInput() and getCount() funciton 
 
 function addInput() {
    let input = document.createElement("input");
@@ -40,7 +40,17 @@ function addInput() {
    } else {
       document.getElementById("error").innerHTML = "You can't add data more than 10";
    }
-   
-   console.log("Counter value is  : ",count.toString());
+}
 
+// function for sending count value to the server
+function getCount() {
+   let mutable = document.createElement("input");
+   let divCounter = document.getElementById("count-container");
+
+   mutable.type = "text";
+   mutable.name = "count";
+   mutable.value = count;
+   mutable.classList.add("form-control");
+
+   divCounter.appendChild(input);
 }
