@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'invoice_inspector_app',
     'authApp',
     'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [

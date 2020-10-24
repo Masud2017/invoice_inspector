@@ -60,7 +60,7 @@
         <div class = "container-fluid mt-sm-2">
             {% if user.is_authenticated %}
             <div name = "nav" class ="nav nav-style">
-                <img src = {{user.profile.profilePic}} class = "nav-brand rounded-circle" width="50px">
+                <a href = {% url "profile" %}><img src = {{user.profile.profilePic}} class = "nav-brand rounded-circle" width="50px"></a>
                 <a class = "nav-link ml-auto btn btn-danger mr-sm-2" href = {% url "index" %} >Dashboard</a>
                 <a href = {% url "profile" %} class = "nav-link btn btn-danger mr-sm-2">Profile</a>
                 <a href = {% url "settings" %}  class = "nav-link btn btn-danger mr-sm-2">Settings</a>

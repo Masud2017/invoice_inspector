@@ -11,6 +11,7 @@ import random
 import json
 from django.contrib.sessions.backends.db import SessionStore
 import pdfkit # for converting html file into pdf
+from . import jsonGenerator # For creating well structured json data
 
 
 
@@ -103,14 +104,16 @@ def getDbData():
 def genInvoice(request,id_get):
     #hello() # bingo it's working
     if request.method == "POST":
+        jsonObject = Json()
         listProduct = [] # register for dynamicly generated products
         listPrice = [] # register for dynamicly generated prices
+        listCount = []
         jsonFormat = {} # creating a json format
         fileName = request.POST["fname"]
+        listTotalData = []
         dateTime = request.POST["date"] # capturing the data of date
         db = InvoiceInfo.objects.get(id=id_get)
         company = db.comp
-        print ("Com: "+company)
 
         for x in range(10):
             if request.POST["product"+str(x)] != '':
@@ -118,9 +121,15 @@ def genInvoice(request,id_get):
         for x in range(10):
             if request.POST["price"+str(x)] != '':
                 listPrice.append(request.POST["price"+str(x)]) # initializing the values of those products price
+        for x in range(10):
+            if request.POST["count"+str(x)] !='':
+                listCount.append(request.POST["count"+str(x)])
+
+        for x in range(10):
+            listTotalData.append({"product"+str(x):listProduct[x],"price"+str(x):listPrice[x],"count"+str(x):listCount[x]})
         #db = InvoiceInfo.objects.get(id = id_get)
         for x in range(10):
-            jsonFormat.update({"date":dateTime,listProduct[x]:listPrice[x]})
+            jsonFormat.update({"date":dateTime,"invoiceData":listTotalData})
             
         jsonData = json.dumps(jsonFormat)
         user = User.objects.get(id=request.user.id)
@@ -128,10 +137,7 @@ def genInvoice(request,id_get):
         collectionDb.save() # saving the database progress
         # print(date)
         # print(jsonFormat)
-        print("Json data is : ",jsonData)
         #print(request.user.username)
-        getDbData()
-
     return HttpResponseRedirect('/')
 
 def invoice_list(request,id_get):
@@ -141,11 +147,13 @@ def invoice_list(request,id_get):
 
 def generate(request,id_get):
     db  = InvoiceCollection.objects.get(id = id_get)
-    jsn = json.loads(db.productData)
+    jsn = json.loads(db)
+    print("Debugging: "+jsn)
+    productJsn = json.loads(db.productData)
+    productJsn.pop("date")
     dbinfo = InvoiceInfo.objects.get(comp = db.company)
-    for x in jsn:
-        print(x + " "+jsn[x])
-    return render(request,"generateTemplate.html",{"data":jsn,"info":dbinfo})
+
+    return render(request,"generateTemplate.html",{"data":jsn,"info":dbinfo,"productData":productJsn})
     
 def delGenerate(request,id_get):
     db = InvoiceCollection.objects.get(id =id_get)

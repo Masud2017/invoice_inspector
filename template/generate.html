@@ -24,6 +24,8 @@
                     <input type = "text" placeholder =  "Enter the product" value = "none" name = "product{{x}}" class = "form-control">
                     Enther the price: #{{x}}
                     <input name = "price{{x}}" type = "text" class = "form-control" value = "none" placeholder = "Enter the neumerical values">
+                    Count
+                    <input name = "count{{x}}" type = "text" class = "form-control" value = "none" placeholder="Product count">
                     {% endfor %}
            
                     <!--<buttn type = "button" class = "form-control btn btn-danger mt-sm-4" id = "before" onclick = "addmore()">Add more</buttn>-->
@@ -51,7 +53,7 @@
                     </div>
                 {% else %}
                     {% for x in dataGeneratedInvoiceCollection %}
-                         <div class = "card bg-danger text-white">
+                         <div class = "card bg-danger text-white mt-sm-4">
                              <div class = "card-body">
                              Hey this is card body
                              <h5>File name: </h5>{{x.fileName}}
