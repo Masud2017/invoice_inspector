@@ -1,6 +1,6 @@
 import json
 
-class Json:
+class JsonGen:
     date = ''
     productName = []
     prices = []
@@ -16,13 +16,15 @@ class Json:
         self.count.append(count)
 
     def getJson(self):
-        jsonDict = {}
+        jsonDict = []
         for x in range(len(self.productName)):
-            jsonDict.update({x:{"name":self.productName[x],"price":self.prices[x],"count":self.count[x]}})
+            jsonDict.append({"name":self.productName[x],"price":self.prices[x],"count":self.count[x]})
         jsn = json.dumps(jsonDict)
         
         return jsn
 '''
+# Testing the code
+
 if __name__ == "__main__":
     obj = Json()
     for _ in range(10):

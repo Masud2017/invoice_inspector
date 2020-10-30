@@ -27,6 +27,7 @@ class Connector(models.Model):
 class InvoiceCollection(models.Model):
     name = models.TextField(max_length=250,blank=True)
     date = models.TextField()
+    fileName = models.TextField(max_length=250,blank=True)
     productData = models.TextField(max_length=50,blank=True)
     company = models.TextField(max_length=50,blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
