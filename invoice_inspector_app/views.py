@@ -12,8 +12,6 @@ import json
 from django.contrib.sessions.backends.db import SessionStore
 import pdfkit # for converting html file into pdf
 from .jsonGenerator import JsonGen # For creating well structured json data
-from django.utils.safestring import SafeString
-
 
 
 # importing user defined modules
@@ -170,14 +168,16 @@ def invoice_list(request,id_get):
 def generate(request,id_get):
     db  = InvoiceCollection.objects.get(id = id_get)
     jsn = json.loads(db.productData)
+    dbinfo = InvoiceInfo.objects.get(comp = db.company)
+    price = 0
+
+    for x in jsn:
+        price += int(x['price'])
 
     #print(jsn)
     #print("Debugging: "+str(jsn))
-    
-    dbinfo = InvoiceInfo.objects.get(comp = db.company)
-    
 
-    return render(request,"generateTemplate.html",{'jsnData':jsn,"info":dbinfo})
+    return render(request,"generateTemplate.html",{'jsnData':jsn,"info":dbinfo,'price':price})
     
 def delGenerate(request,id_get):
     db = InvoiceCollection.objects.get(id =id_get)
