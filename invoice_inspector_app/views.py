@@ -12,6 +12,7 @@ import json
 from django.contrib.sessions.backends.db import SessionStore
 import pdfkit # for converting html file into pdf
 from .jsonGenerator import JsonGen # For creating well structured json data
+import datetime
 
 
 # importing user defined modules
@@ -159,6 +160,9 @@ def genInvoice(request,id_get):
         collectionDb.save() # saving the database progress
     
     return HttpResponseRedirect('/')
+def getInstance (request) : # this is going to use our single ton desing pattern 
+
+    return HttpResponse("Hello the data is going to fetch to your front end!!")
 
 def invoice_list(request,id_get):
     # this module is going to show the information of the invoice inspector data
@@ -166,19 +170,30 @@ def invoice_list(request,id_get):
     return render(request,"invoice_list.html",{'db':db})
 
 def generate(request,id_get):
-    db  = InvoiceCollection.objects.get(id = id_get)
-    jsn = json.loads(db.productData)
-    dbinfo = InvoiceInfo.objects.get(comp = db.company)
-    price = 0
+    if doYouOwnThisFile(request.user.username,id_get) == "Exist":
+        db  = InvoiceCollection.objects.get(id = id_get)
+        jsn = json.loads(db.productData)
+        dbinfo = InvoiceInfo.objects.get(comp = db.company)
+        price = 0
 
-    for x in jsn:
-        price += int(x['price'])
+        for x in jsn:
+            price += int(x['price'])
 
-    #print(jsn)
-    #print("Debugging: "+str(jsn))
+        #print(jsn)
+        #print("Debugging: "+str(jsn))
+        formatedDate = datetime.datetime.strptime(db.date,'%Y-%m-%d')
+        return render(request,"generateTemplate.html",{'jsnData':jsn,"info":dbinfo,'price':price,'date':formatedDate})
+    else:
+        return HttpResponseRedirect('/')
 
-    return render(request,"generateTemplate.html",{'jsnData':jsn,"info":dbinfo,'price':price})
     
 def delGenerate(request,id_get):
     db = InvoiceCollection.objects.get(id =id_get)
     db.delete()
+
+# This method ensures that every user data will be secure from get leaked
+def doYouOwnThisFile(username,id):
+    user = username
+    db = InvoiceCollection.objects.get(id=id)
+    if db.user.username == username:
+        return "Exist"
